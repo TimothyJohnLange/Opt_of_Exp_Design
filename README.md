@@ -1,1 +1,1 @@
-Masters Project
+Optimisation of the experimental design for the modelling of PVC properties

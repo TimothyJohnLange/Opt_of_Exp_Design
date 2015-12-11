@@ -1,21 +1,15 @@
+# Calculation of the T matrix, time required for each combination of time and degree
 
-# coding: utf-8
-
-# In[13]:
 def calc_T(experiments):
 
 	from scipy.misc import comb
 	from numpy import zeros, size
 	from math import ceil
-
-
-	# In[14]:
-
+	
 	deg = [1.0, 2.0, 2.5, 3]
 	q = 6.0
-
-
-	# In[15]:
+	
+	# Time data for each experiment
 	exp_time_data = {'Antistat': {'exp_time': 5.0,
 							 'sample_prep_time': 25.0,
 							 'no_exp_p_day': None,
@@ -36,9 +30,9 @@ def calc_T(experiments):
 								 'sample_prep_time': None,
 								 'no_exp_p_day': None,
 								 'no_exp_p_run': 5.0},
-					'TMA':      {'exp_time': None,
+					'TMA':      {'exp_time': 30,
 								 'sample_prep_time': None,
-								 'no_exp_p_day': 12,
+								 'no_exp_p_day': None,
 								 'no_exp_p_run': 1.0},
 					'Tensile': {'exp_time': 15.0, #Need more info
 								 'sample_prep_time': 25.0,
@@ -61,13 +55,12 @@ def calc_T(experiments):
 								 'no_exp_p_day': None,
 								 'no_exp_p_run': 1.0},
 					'LOI':      {'exp_time': None, #Need more info
-								 'sample_prep_time': None,# As Monique
+								 'sample_prep_time': None,# Ask Monique
 								 'no_exp_p_day': 14,
 								 'no_exp_p_run': 1.0}}
 
 
-	# In[16]:
-
+	
 	T = zeros([size(experiments), size(deg)]) # In hours
 	no_exp_all = zeros([size(experiments), size(deg)])
 

@@ -9,7 +9,7 @@ def calc_T(experiments):
 	deg = [1.0, 2.0, 2.5, 3]
 	q = 6.0
 	
-	# Time data for each experiment
+	# Time data for each experiment, time in min
 	exp_time_data = {'Antistat': {'exp_time': 5.0,
 							 'sample_prep_time': 25.0,
 							 'no_exp_p_day': None,
@@ -65,11 +65,11 @@ def calc_T(experiments):
 	no_exp_all = zeros([size(experiments), size(deg)])
 
 	for col, n in enumerate(deg):
-		# Calculate the number of terms required
+		# Calculate the number of terms required plus experiments to estimate variance
 		if n == 2.5:
-			no_terms = comb(n + q - 0.5, n + 0.5) - comb(q, 3)
+			no_terms = comb(n + q - 0.5, n + 0.5) - comb(q, 3) + 4 # 4 extra experiments to estimate variance (not technically terms)
 		else:
-			no_terms = comb(n + q - 1, n)
+			no_terms = comb(n + q - 1, n) + 4 # 4 extra experiments to estimate variance (not technically terms)
 		
 		for row, exp in enumerate(experiments):
 			

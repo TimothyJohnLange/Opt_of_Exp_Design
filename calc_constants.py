@@ -48,7 +48,7 @@ def calc_T(experiments):
 								 'no_exp_p_run': 1.0},
 					'Micro_Cone':{'exp_time': None, #Need more info
 								 'sample_prep_time': None, # Ask Monique
-								 'no_exp_p_day': 14,
+								 'no_exp_p_day': 12,
 								 'no_exp_p_run': 1.0},
 					'UL94':     {'exp_time': 10.0, #Need more info
 								 'sample_prep_time': 10.0,
@@ -56,7 +56,7 @@ def calc_T(experiments):
 								 'no_exp_p_run': 1.0},
 					'LOI':      {'exp_time': None, #Need more info
 								 'sample_prep_time': None,# Ask Monique
-								 'no_exp_p_day': 14,
+								 'no_exp_p_day': 12,
 								 'no_exp_p_run': 1.0}}
 
 

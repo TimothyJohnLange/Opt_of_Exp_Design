@@ -8,26 +8,26 @@ from calc_constants import calc_T
 from report import results
 from numpy import size, amax, amin
 
-def solve_milp(p, mm_lambda_1, mm_lambda_2):
+def solve_milp(p, mm_lambda_1, mm_lambda_2, exp_time_data, experiments):
 	# ####Define Design Variables
 
 	#Degree allocation for each Experiment
 
 	#Exp List must be in alphabetical order for the program output to make sense
 
-	experiments = ['Antistat',
-				   'Rheometer',
-				   'Metrastat',
-				   'Ransomat',
-				   'Vicat',
-				   'TMA',
-				   'Tensile',
-				   'Impact',
-				   'Cone_Cal',
-				   'Micro_Cone',
-				   'UL94',
-				   'LOI']
-	experiments.sort()
+	#experiments = ['Antistat',
+	#			   'Rheometer',
+	#			   'Metrastat',
+	#			   'Ransomat',
+	#			   'Vicat',
+	#			   'TMA',
+	#			   'Tensile',
+	#			   'Impact',
+	#			   'Cone_Cal',
+	#			   'Micro_Cone',
+	#			   'UL94',
+	#			   'LOI']
+	#experiments.sort()
 
 	no_exp = size(experiments)
 
@@ -54,7 +54,7 @@ def solve_milp(p, mm_lambda_1, mm_lambda_2):
 
 	d = [1.0, 2.0, 2.5, 3.0] #Degree values
 
-	T_no_exp_all = calc_T(experiments)
+	T_no_exp_all = calc_T(experiments, exp_time_data)
 	T = T_no_exp_all[0] #Time required for each experiment degree combination
 	no_exp_all = T_no_exp_all[1] #No of experiments required for each experiment degree combination
 
@@ -146,7 +146,7 @@ def solve_milp(p, mm_lambda_1, mm_lambda_2):
 
 	# Detailed Solution Report
 
-	results(prob, degrees, no_exp, no_students, experiments, students, no_exp_all, T)
+	# results(prob, degrees, no_exp, no_students, experiments, students, no_exp_all, T)
 
 	# Optimum Objective Function Value
 

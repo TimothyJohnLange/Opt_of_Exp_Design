@@ -1,6 +1,6 @@
 # Calculation of the T matrix, time required for each combination of time and degree
 
-def calc_T(experiments):
+def calc_T(experiments, exp_time_data):
 
 	from scipy.misc import comb
 	from numpy import zeros, size
@@ -10,57 +10,55 @@ def calc_T(experiments):
 	q = 6.0
 	
 	# Time data for each experiment, time in min
-	exp_time_data = {'Antistat': {'exp_time': 5.0,
-							 'sample_prep_time': 25.0,
-							 'no_exp_p_day': None,
-							 'no_exp_p_run': 1.0},
-					'Rheometer':{'exp_time': 210.0,
-								 'sample_prep_time': None,
-								 'no_exp_p_day': None,
-								 'no_exp_p_run': 1.0}, 
-					'Metrastat':{'exp_time': 180.0,
-								 'sample_prep_time': 25.0,
-								 'no_exp_p_day': None,
-								 'no_exp_p_run': 3.0},
-					'Ransomat': {'exp_time': 300.0,
-								 'sample_prep_time': 20.0,
-								 'no_exp_p_day': None,
-								 'no_exp_p_run': 8.0},
-					'Vicat':    {'exp_time': 20.0, #Need more info
-								 'sample_prep_time': None,
-								 'no_exp_p_day': None,
-								 'no_exp_p_run': 5.0},
-					'TMA':      {'exp_time': 30,
-								 'sample_prep_time': None,
-								 'no_exp_p_day': None,
-								 'no_exp_p_run': 1.0},
-					'Tensile': {'exp_time': 15.0, #Need more info
-								 'sample_prep_time': 25.0,
-								 'no_exp_p_day': None,
-								 'no_exp_p_run': 1.0},
-					'Impact':  {'exp_time': 15.0, #Need more info
-								 'sample_prep_time': 25.0,
-								 'no_exp_p_day': None,
-								 'no_exp_p_run': 1.0},
-					'Cone_Cal': {'exp_time': None,
-								 'sample_prep_time': 25.0,
-								 'no_exp_p_day': 14,
-								 'no_exp_p_run': 1.0},
-					'Micro_Cone':{'exp_time': None, #Need more info
-								 'sample_prep_time': None, # Ask Monique
-								 'no_exp_p_day': 12,
-								 'no_exp_p_run': 1.0},
-					'UL94':     {'exp_time': 10.0, #Need more info
-								 'sample_prep_time': 10.0,
-								 'no_exp_p_day': None,
-								 'no_exp_p_run': 1.0},
-					'LOI':      {'exp_time': None, #Need more info
-								 'sample_prep_time': None,# Ask Monique
-								 'no_exp_p_day': 12,
-								 'no_exp_p_run': 1.0}}
+	#exp_time_data = {'Antistat': {'exp_time': 5.0,
+	#						 'sample_prep_time': 25.0,
+	#						 'no_exp_p_day': None,
+	#						 'no_exp_p_run': 1.0},
+	#				'Rheometer':{'exp_time': 210.0,
+	#							 'sample_prep_time': None,
+	#							 'no_exp_p_day': None,
+	#							 'no_exp_p_run': 1.0}, 
+	#				'Metrastat':{'exp_time': 180.0,
+	#							 'sample_prep_time': 25.0,
+	#							 'no_exp_p_day': None,
+	#							 'no_exp_p_run': 3.0},
+	#				'Ransomat': {'exp_time': 300.0,
+	#							 'sample_prep_time': 20.0,
+	#							 'no_exp_p_day': None,
+	#							 'no_exp_p_run': 8.0},
+	#				'Vicat':    {'exp_time': 20.0, #Need more info
+	#							 'sample_prep_time': None,
+	#							 'no_exp_p_day': None,
+	#							 'no_exp_p_run': 5.0},
+	#				'TMA':      {'exp_time': 30,
+	#							 'sample_prep_time': None,
+	#							 'no_exp_p_day': None,
+	#							 'no_exp_p_run': 1.0},
+	#				'Tensile': {'exp_time': 15.0, #Need more info
+	#							 'sample_prep_time': 25.0,
+	#							 'no_exp_p_day': None,
+	#							 'no_exp_p_run': 1.0},
+	#				'Impact':  {'exp_time': 15.0, #Need more info
+	#							 'sample_prep_time': 25.0,
+	#							 'no_exp_p_day': None,
+	#							 'no_exp_p_run': 1.0},
+	#				'Cone_Cal': {'exp_time': None,
+	#							 'sample_prep_time': 25.0,
+	#							 'no_exp_p_day': 14,
+	#							 'no_exp_p_run': 1.0},
+	#				'Micro_Cone':{'exp_time': None, #Need more info
+	#							 'sample_prep_time': None, # Ask Monique
+	#							 'no_exp_p_day': 12,
+	#							 'no_exp_p_run': 1.0},
+	#				'UL94':     {'exp_time': 10.0, #Need more info
+	#							 'sample_prep_time': 10.0,
+	#							 'no_exp_p_day': None,
+	#							 'no_exp_p_run': 1.0},
+	#				'LOI':      {'exp_time': None, #Need more info
+	#							 'sample_prep_time': None,# Ask Monique
+	#							 'no_exp_p_day': 12,
+	#							 'no_exp_p_run': 1.0}}
 
-
-	
 	T = zeros([size(experiments), size(deg)]) # In hours
 	no_exp_all = zeros([size(experiments), size(deg)])
 
